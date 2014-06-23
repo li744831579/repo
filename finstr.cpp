@@ -26,7 +26,10 @@ char *findstr(char*str1,char*str2)//查看str1中是否包含str2,如果包含�
 }
 int main()
 {
-	char *s = findstr("hello world","worl"); 
+	char *s = findstr("hello world","wol"); 
+	if ( *s != NULL)
 	cout << *s <<endl;
+	else 
+		cout <<"不匹配"
 	return 0;
 }
