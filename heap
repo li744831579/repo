@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+void adjust_heap(int *a, int p,int n)
+{
+	for (int i = 1; i < 7; i++)cout << a[i] << " ";
+	cout << endl;
+	int rch = 0,lch=0;
+	for (size_t i = p; 2*i <= n;)
+	{
+		lch = 2 * i;
+		rch = 2 * i + 1;
+		if (rch <= n)
+		{
+			if (a[rch]>a[lch])
+			{
+				if (a[rch]>a[i])
+				{
+					swap(a[rch],a[i]);
+					i = rch;
+				}
+				else
+				{
+					break;
+				}
+			}
+			else
+			{
+				if (a[lch]>a[i])
+				{
+					swap(a[lch],a[i]);
+					i = lch;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		else
+		{
+			if (a[lch]>a[i])
+			{
+				swap(a[lch], a[i]);
+				break;
+			}
+			else
+			{
+				break;
+			}
+
+		}
+	}
+};
+void make_heap(int *a, int n)
+{
+	int beg = n / 2;
+	for (size_t i = beg; i >= 1; i--)
+	{
+		adjust_heap(a,i,n);
+	}
+
+}
+void heap_sort(int *a, int n)
+{
+	for (size_t i = n; i > 1; i--)
+	{
+		swap(a[1],a[i]);
+		adjust_heap(a,1,i-1);
+		for (int i = 1; i < 7; i++)cout << a[i] << " ";
+		cout << endl;
+
+	}
+}
+int main(){
+	int a[] = {6,1,2,3,4,5,6};
+	make_heap(a,6);
+	for (int i = 1; i < 7; i++)cout << a[i] << " ";
+	cout << endl;
+	heap_sort(a,6);
+	return 0;
+}
